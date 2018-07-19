@@ -13,10 +13,10 @@ import java.util.Objects;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, String> {
 
-    @Query(value="SELECT cliente.cpf, cliente.nome, cliente.email, cliente.endereco, telefonesCliente.numTelefone FROM cliente INNER JOIN telefonesCliente ON cliente.cpf=telefonesCliente.cpf", nativeQuery=true)
+    @Query(value="SELECT cliente.cpf, cliente.nome, cliente.email, cliente.endereco, telefonescliente.numtelefone FROM cliente INNER JOIN telefonescliente ON cliente.cpf=telefonescliente.cpf", nativeQuery=true)
     List<Object[]> selectTodosOsClientes();
 
-    @Query(value = "SELECT cliente.cpf, cliente.nome, cliente.email, cliente.endereco, telefonesCliente.numTelefone FROM cliente inner join telefonesCliente on cliente.cpf=telefonesCliente.cpf where cliente.cpf = ?" ,nativeQuery = true)
+    @Query(value = "SELECT cliente.cpf, cliente.nome, cliente.email, cliente.endereco, telefonescliente.numtelefone FROM cliente inner join telefonescliente on cliente.cpf=telefonescliente.cpf where cliente.cpf = ?" ,nativeQuery = true)
     Object selectClientePorCpf(String cpf);
 
     /*Melhora utilizando query nativa
