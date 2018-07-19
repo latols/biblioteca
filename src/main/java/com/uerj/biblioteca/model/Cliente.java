@@ -5,6 +5,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "cliente")
@@ -25,6 +27,8 @@ public class Cliente {
     @NotNull
     private String endereco;
 
+    @OneToMany(mappedBy = "cliente")
+    private Set<TelefonesCliente> telefonesClientes = new HashSet<TelefonesCliente>();
 
     public String getCpf() {
         return cpf;
@@ -54,9 +58,7 @@ public class Cliente {
         return endereco;
     }
 
-    public void setEndereco(String email) {
-        this.endereco = email;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
-
-
 }

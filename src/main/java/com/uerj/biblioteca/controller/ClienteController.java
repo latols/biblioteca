@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api")
@@ -16,13 +17,13 @@ public class ClienteController {
     ClienteRepository clienteRepository;
 
     @GetMapping("/clientes")
-    public List<Cliente> pegarTodosClientes() {
+    public List<Object  []> pegarTodosClientes() {
         return clienteRepository.selectTodosOsClientes();
     }
 
 
     @GetMapping("/clientes/{cpf}")
-    public Cliente pegarClientePeloCpf(@PathVariable(value = "cpf") String cpf) {
+    public Object pegarClientePeloCpf(@PathVariable(value = "cpf") String cpf) {
         return clienteRepository.selectClientePorCpf(cpf);
 
     }
@@ -34,13 +35,13 @@ public class ClienteController {
 
 
     //Melhoria utilizando query nativa
-    /*@PostMapping("/clientes")
-    public void criarClientes(@Valid @RequestBody Cliente cliente) {
-        clienteRepository.createCadastroCliente(cliente.getCpf(),cliente.getNome(),cliente.getEmail(),cliente.getEndereco());
-    }
+//    @PostMapping("/clientes")
+//    public void criarClientes(@Valid @RequestBody Cliente cliente) {
+//        clienteRepository.createCadastroCliente(cliente.getCpf(),cliente.getNome(),cliente.getEmail(),cliente.getEndereco());
+//    }
 
-    @DeleteMapping("/clientes")
-    public void deletarCliente(@PathVariable(value = "cpf") String cpf) {
-        clienteRepository.deleteCliente(cpf);
-    }*/
+//    @DeleteMapping("/clientes")
+//    public void deletarCliente(@PathVariable(value = "cpf") String cpf) {
+//        clienteRepository.deleteCliente(cpf);
+//    }
 }

@@ -7,18 +7,21 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "telefonecliente")
+@Table(name = "telefonescliente")
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(allowGetters = true)
 public class TelefonesCliente {
 
     @Id
-    @Column(name = "numTelefone", nullable = false)
+    @Column(name = "numtelefone", nullable = false)
     private String numTelefone;
 
     @NotNull
     private String cpf;
 
+    @ManyToOne
+    @JoinColumn(name = "cpf", insertable = false, updatable = false)
+    private Cliente cliente;
 
     public String getNumTelefone() {
         return numTelefone;
